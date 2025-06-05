@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="cart">
+        <nav>
+            <div class="logo">
+                <img src="image/logo.png" alt="Logo">
+            </div>
+            <ul id="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#Menu">Menu</a></li>
+                <li><a href="index.html#Gallery">Gallery</a></li>
+                <li><a href="index.html#Review">Review</a></li>
+                <li><a href="index.html#Order">Order</a></li>
+                <li><a href="cart.html">Cart</a></li>
+            </ul>
+        </nav>
+
+        <div class="product">
+            <img src="image/Hot_dog.jpg" alt="Hot Dog" class="product-img">
+            <div class="product-info">
+                <h3>Hot Dog - INR 80.00</h3>
+            </div>
+            <button onclick="addToCart('Hot Dog', 80, 'image/Hot_dog.jpg')">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="image/pizza.jpg" alt="Pizza" class="product-img">
+            <div class="product-info">
+                <h3>Pizza - INR 120.00</h3>
+            </div>
+            <button onclick="addToCart('Pizza', 120, 'image/pizza.jpg')">Add to Cart</button>
+        </div>
+
+        <div id="cart-items" class="cart-items">
+
+        </div>
+
+        <div class="cart-summary">
+            <div class="summary">
+                <h2>Summary</h2>
+                <div class="total">
+                    <span>Total:</span>
+                    <span id="total-price">INR 0.00</span>
+                </div>
+                <button class="checkout-btn" id="checkout">Proceed to Checkout</button>
+                <div id="cart-actions">
+                    <button id="clear-cart" onclick="clearCart()">Clear Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const cartItems = [];
+        let totalPrice = 0;
+
+        function updateCart() {
+            const cartItemsContainer = document.getElementById("cart-items");
+            const totalElement = document.getElementById("total-price");
+            cartItemsContainer.innerHTML = "";
+
+            if (cartItems.length === 0) {
+                cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
+                totalElement.textContent = "INR 0.00";
+                return;
+            }
+
+            cartItems.forEach((item, index) => {
+                const cartItem = document.createElement("div");
+                cartItem.classList.add("cart-item");
+                cartItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="cart-item-img">
+                    <span>${item.name} - INR ${item.price}</span>
+                    <button onclick="removeFromCart(${index})">Remove</button>
+                `;
+                cartItemsContainer.appendChild(cartItem);
+            });
+
+            totalElement.textContent = `INR ${totalPrice.toFixed(2)}`;
+        }
+
+        function addToCart(name, price, image) {
+            cartItems.push({ name, price, image });
+            totalPrice += price;
+            updateCart();
+        }
+
+        function removeFromCart(index) {
+            totalPrice -= cartItems[index].price;
+            cartItems.splice(index, 1);
+            updateCart();
+        }
+
+        function clearCart() {
+            cartItems.length = 0;
+            totalPrice = 0;
+            updateCart();
+        }
+    </script>
+</body>
+</html>
