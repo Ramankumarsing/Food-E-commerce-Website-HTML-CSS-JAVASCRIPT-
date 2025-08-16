@@ -58,5 +58,32 @@ attachments/assets<img width="1920" height="1080" alt="Screenshot (251)" src="ht
 
 ---
 
-##   
+##   ## 📂 Project Structure  
+/Food-E-commerce-Website-HTML-CSS-JAVASCRIPT
+│── index.html
+│── style.css
+│── script.js
+│── /assets
+│ ├── /images → food images, logos, banners
+│ ├── /screenshots → UI screenshots
+
+---
+
+##
+
+🎯 Learning Outcomes
+Stronger understanding of HTML/CSS layouting
+
+Building an interactive UI with Vanilla JavaScript
+
+Implementing a cart system from scratch
+
+Designing scalable front-end projects
+
+
+⭐ This project highlights my ability to build functional, responsive, and user-friendly web applications — a strong foundation for front-end development and secure application design.
+
+
+
+
 
